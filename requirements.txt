@@ -1,0 +1,6 @@
+more-itertools
+web3
+colorama
+eth_keys
+mnemonic
+bip32
