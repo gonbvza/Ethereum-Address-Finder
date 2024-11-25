@@ -1,6 +1,6 @@
 from itertools import permutations
-from seed_generator import findMnemonic  
-from addressCheck import checkBalance
+from src.seed_generator import findMnemonic  
+from src.addressCheck import checkBalance
 from web3 import Web3
 from colorama import Fore, Back, Style
 
