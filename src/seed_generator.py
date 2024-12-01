@@ -3,9 +3,10 @@ from mnemonic import Mnemonic
 from eth_keys import keys
 
 def findMnemonic(mnemonic_phrase):
+    
     # Create Mnemonic instance and generate seed from the given mnemonic
     mnemo = Mnemonic("english")
-    seed = mnemo.to_seed(mnemonic_phrase, passphrase="")  # Empty passphrase
+    seed = mnemo.to_seed(mnemonic_phrase, passphrase="")  
     
     # Initialize BIP32 with the generated seed
     bip32 = BIP32.from_seed(seed)

@@ -4,7 +4,7 @@ from src.addressCheck import checkBalance
 from web3 import Web3
 from colorama import Fore, Back, Style
 
-def find_combinator():
+def compareToAddress(target):
     words = []
 
     with open('test.txt', 'r') as file:
@@ -15,8 +15,6 @@ def find_combinator():
     all_combinations = permutations(words)
 
     w3 = Web3(Web3.HTTPProvider('https://mainnet.infura.io/v3/df0e16f9d9944121b4b18431edbb3dac'))
-
-    target = "0x733b1A996beF3364F54Ee4Ae24EFaFC12AB0fEEE"
 
     idx = 0
 
@@ -29,20 +27,18 @@ def find_combinator():
         public = keys_info["public_key"]
         address = keys_info["address"]
 
-        print(f"{idx} {address}")
-        
-        address_info = checkBalance(address, w3)
+        status = "Not equal"
 
-        balance = address_info["balance"]
+        target = target.lower()
 
-        print(f"{Fore.YELLOW} Scan {Fore.WHITE} {idx} | {Fore.GREEN} {' '.join(combination)} {Fore.WHITE} | {Fore.GREEN} {priv[2:]} {Fore.WHITE} | {Fore.RED} {address} has {Fore.WHITE} {balance} {Fore.RED} ether")
-
-        if balance > 0 :
+        if address == target:
+            status
+            print(f"{Fore.YELLOW} Scan {Fore.WHITE} {idx} | {Fore.GREEN} {' '.join(combination)} {Fore.WHITE} | {Fore.GREEN} {address} {Fore.WHITE} | {Fore.RED} they are {status}")
             break
-
-
+        else:
+            print(f"{Fore.YELLOW} Scan {Fore.WHITE} {idx} | {Fore.GREEN} {' '.join(combination)} {Fore.WHITE} | {Fore.GREEN} {address} {Fore.WHITE} | {Fore.RED} they are {status}")
 
         idx += 1
 
 if __name__ == "__main__":
-    find_combinator()
+    compareToAddress()
